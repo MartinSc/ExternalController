@@ -6,7 +6,7 @@ using System.Web.Http.Dispatcher;
 
 namespace ControllerTestApi.Resolver
 {
-
+    //https://www.strathweb.com/2012/06/using-controllers-from-an-external-assembly-in-asp-net-web-api/
     public class AssembliesResolver : DefaultAssembliesResolver
     {
         public override ICollection<Assembly> GetAssemblies()
