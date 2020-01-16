@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Castle.Core.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +10,15 @@ namespace ControllerTestApi.Controllers
 {
     public class ValuesController : ApiController
     {
+        // this is Castle.Core.Logging.ILogger, not log4net.Core.ILogger
+        public ILogger Logger { get; set; }
+
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var result = new string[] { "value1", "value2" };
+            Logger.WarnFormat("User {0} attempted login but password validation failed", string.Join(",", result));
+            return result;
         }
 
         // GET api/values/5
