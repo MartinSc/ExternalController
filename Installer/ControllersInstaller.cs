@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace ControllerTestApi.Installer
 {
@@ -19,9 +20,18 @@ namespace ControllerTestApi.Installer
                 .BasedOn<ApiController>()
                 .LifestyleTransient());
 
+            container.Register(Classes.FromThisAssembly()
+              .BasedOn<Controller>()
+              .LifestyleTransient());
+
             container.Register(
                 Classes.FromAssemblyNamed("ExternalControllers")
                 .BasedOn<ApiController>()
+                .LifestyleTransient());
+
+            container.Register(
+                Classes.FromAssemblyNamed("ExternalControllers")
+                .BasedOn<Controller>()
                 .LifestyleTransient());
 
         }

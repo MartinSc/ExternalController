@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -26,9 +27,13 @@ namespace ControllerTestApi.Installer
 		{
 			if (controllerType == null)
 			{
-				throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
+				throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", 
+					requestContext.HttpContext.Request.Path));
 			}
-			return (IController)kernel.Resolve(controllerType);
+			//if(controllerType.BaseType == typeof(ApiController))
+				return (IController)kernel.Resolve(controllerType);
+
+			//return null;
 		}
 	}
 }
